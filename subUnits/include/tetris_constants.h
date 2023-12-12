@@ -26,8 +26,15 @@ extern const int BLOCK_HEIGHT;
 extern const SDL_Color GRID_BACKGROUND_COLOR;
 extern const SDL_Color GRID_LINES_COLOR;
 extern const SDL_Color CLEAR_COLOR;
-
 extern const SDL_Color SOLID_BLOCK_COLOR;
+
+extern const int STRAIGHT_TETROMINO_WIDTH;
+extern const int SQUARE_TETROMINO_WIDTH;
+extern const int T_TETROMINO_WIDTH;
+extern const int L_TETROMINO_WIDTH;
+extern const int SKEW_TETROMINO_WIDTH;
+
+extern const int SHAPE_COUNT;
 
 enum TetrisFieldCellStates {
     EMPTY = 0,
@@ -42,6 +49,12 @@ enum TetrisShapes {
     T_TETROMINO,
     L_TETROMINO,
     SKEW_TETROMINO
+};
+
+enum Directions {
+    RIGHT,
+    DOWN,
+    LEFT
 };
 
 #endif

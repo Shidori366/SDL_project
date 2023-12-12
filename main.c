@@ -5,12 +5,13 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include "subUnits/include/tetris_constants.h"
-#include "subUnits/include/field_functions.h"
-#include "subUnits/include/sdl_functions.h"
+#include "tetris_constants.h"
+#include "field_functions.h"
+#include "sdl_functions.h"
 
 int main(int argc, char *argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
+    srand(time(NULL));
 
     SDL_Window *window = NULL;
     window = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT,
@@ -23,16 +24,23 @@ int main(int argc, char *argv[]) {
 
     int *field = malloc(TOTAL_NUM_OF_CELLS * sizeof(int));
     initializeField(field);
-    addNewShapeToField(field, SQUARE_TETROMINO);
+    addNewShapeToField(field, SKEW_TETROMINO);
 
     SDL_Event event;
     int running = 1;
     SDL_Rect block = {0, 0, BLOCK_WIDTH, BLOCK_HEIGHT};
+    bool solid = false;
 
     while (running) {
         drawGridBackground(renderer);
+        if (solid) {
+            int random = rand() % (SHAPE_COUNT);
+            addNewShapeToField(field, random);
+            printf("%d\n", random);
+//            addNewShapeToField(field, T_TETROMINO);
+            solid = false;
+        }
 
-        // TODO: Game logic
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT: {
@@ -40,6 +48,23 @@ int main(int argc, char *argv[]) {
                     running = 0;
 
                     break;
+                }
+                case SDL_KEYDOWN: {
+                    if (event.key.keysym.sym == SDLK_UP) {
+                        rotateShape(field);
+                    }
+                    if (event.key.keysym.sym == SDLK_LEFT) {
+                        moveNewShape(field, LEFT,&solid);
+                    }
+                    if (event.key.keysym.sym == SDLK_RIGHT) {
+                        moveNewShape(field, RIGHT, &solid);
+                    }
+                    if (event.key.keysym.sym == SDLK_DOWN) {
+                        moveNewShape(field, DOWN, &solid);
+                    }
+                    if (event.key.keysym.sym == SDLK_SPACE) {
+                        dropNewShape(field, &solid);
+                    }
                 }
             }
         }

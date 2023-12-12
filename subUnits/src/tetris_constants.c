@@ -3,7 +3,7 @@
  * @Date 10.12.2023
  */
 
-#include "../include/tetris_constants.h."
+#include "tetris_constants.h"
 
 const int STARTING_POSITION_HEIGHT = 4;
 const int FIELD_WIDTH = 10;
@@ -19,6 +19,14 @@ const int GRID_WIDTH_PX = WINDOW_WIDTH - SIDEBAR_WIDTH;
 
 const int BLOCK_WIDTH = GRID_WIDTH_PX / FIELD_WIDTH;
 const int BLOCK_HEIGHT = WINDOW_HEIGHT / FIELD_HEIGHT;
+
+const int STRAIGHT_TETROMINO_WIDTH = 4;
+const int SQUARE_TETROMINO_WIDTH = 2;
+const int T_TETROMINO_WIDTH = 3;
+const int L_TETROMINO_WIDTH = 2;
+const int SKEW_TETROMINO_WIDTH = 3;
+
+const int SHAPE_COUNT = 5;
 
 const SDL_Color GRID_BACKGROUND_COLOR = {
         25,

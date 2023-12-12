@@ -3,7 +3,7 @@
  * @Date 10.12.2023
  */
 
-#include "../include/sdl_functions.h"
+#include "sdl_functions.h"
 
 void drawGridBackground(SDL_Renderer *renderer) {
     SDL_Rect gridRect = {0, 0, GRID_WIDTH_PX, WINDOW_HEIGHT};
