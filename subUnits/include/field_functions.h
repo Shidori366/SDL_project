@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "tetris_constants.h"
+#include "tetris_types.h"
 
 void initializeField(int *field);
 int getPosition(int row, int column, int width);
