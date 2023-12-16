@@ -28,16 +28,15 @@ int main(int argc, char *argv[]) {
 
     SDL_Event event;
     int running = 1;
+    int currentNewShapeColorIndex;
     SDL_Rect block = {0, 0, BLOCK_WIDTH, BLOCK_HEIGHT};
     bool solid = false;
 
     while (running) {
         drawGridBackground(renderer);
         if (solid) {
-            int random = rand() % (SHAPE_COUNT);
-            addNewShapeToField(field, random);
-            printf("%d\n", random);
-//            addNewShapeToField(field, T_TETROMINO);
+            addNewShapeToField(field, rand() % (SHAPE_COUNT));
+            currentNewShapeColorIndex = rand() % SHAPE_COUNT;
             solid = false;
         }
 
@@ -54,7 +53,7 @@ int main(int argc, char *argv[]) {
                         rotateShape(field);
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        moveNewShape(field, LEFT,&solid);
+                        moveNewShape(field, LEFT, &solid);
                     }
                     if (event.key.keysym.sym == SDLK_RIGHT) {
                         moveNewShape(field, RIGHT, &solid);
@@ -83,7 +82,7 @@ int main(int argc, char *argv[]) {
                         continue;
                     }
                     case NEW_SHAPE_PART: {
-                        renderBlock(renderer, block, (SDL_Color) {54, 175, 153, 255});
+                        renderBlock(renderer, block, TETROMINO_COLORS[currentNewShapeColorIndex]);
 
                         continue;
                     }

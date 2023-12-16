@@ -27,6 +27,7 @@ extern const SDL_Color GRID_BACKGROUND_COLOR;
 extern const SDL_Color GRID_LINES_COLOR;
 extern const SDL_Color CLEAR_COLOR;
 extern const SDL_Color SOLID_BLOCK_COLOR;
+extern const SDL_Color TETROMINO_COLORS[];
 
 extern const int STRAIGHT_TETROMINO_WIDTH;
 extern const int SQUARE_TETROMINO_WIDTH;

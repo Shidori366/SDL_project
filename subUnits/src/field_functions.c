@@ -18,15 +18,15 @@ int getPosition(int row, int column, int width) {
 void addNewShapeToField(int *field, enum TetrisShapes shape) {
     switch (shape) {
         case STRAIGHT_TETROMINO: {
-            int startPos = rand() % (FIELD_WIDTH - STRAIGHT_TETROMINO_WIDTH - 1);
-            for (int i = 0; i < 4; ++i) {
+            int startPos = rand() % (FIELD_WIDTH - STRAIGHT_TETROMINO_WIDTH + 1);
+            for (int i = 0; i < STRAIGHT_TETROMINO_WIDTH; ++i) {
                 field[startPos + i] = NEW_SHAPE_PART;
             }
 
             return;
         }
         case SQUARE_TETROMINO: {
-            int startPos = rand() % (FIELD_WIDTH - SQUARE_TETROMINO_WIDTH - 1);
+            int startPos = rand() % (FIELD_WIDTH - SQUARE_TETROMINO_WIDTH + 1);
             field[startPos] = NEW_SHAPE_PART;
             field[startPos + 1] = NEW_SHAPE_PART;
             field[getPosition(1, startPos, FIELD_WIDTH)] = NEW_SHAPE_PART;
@@ -35,7 +35,7 @@ void addNewShapeToField(int *field, enum TetrisShapes shape) {
             return;
         }
         case T_TETROMINO: {
-            int startPos = rand() % (FIELD_WIDTH - T_TETROMINO_WIDTH - 1);
+            int startPos = rand() % (FIELD_WIDTH - T_TETROMINO_WIDTH + 1);
             field[startPos] = NEW_SHAPE_PART;
             field[startPos + 1] = NEW_SHAPE_PART;
             field[startPos + 2] = NEW_SHAPE_PART;
@@ -44,7 +44,7 @@ void addNewShapeToField(int *field, enum TetrisShapes shape) {
             return;
         }
         case L_TETROMINO: {
-            int startPos = rand() % (FIELD_WIDTH - L_TETROMINO_WIDTH - 1);
+            int startPos = rand() % (FIELD_WIDTH - L_TETROMINO_WIDTH + 1);
             field[startPos] = NEW_SHAPE_PART;
             field[getPosition(1, startPos, FIELD_WIDTH)] = NEW_SHAPE_PART;
             field[getPosition(2, startPos, FIELD_WIDTH)] = NEW_SHAPE_PART;
@@ -53,7 +53,7 @@ void addNewShapeToField(int *field, enum TetrisShapes shape) {
             return;
         }
         case SKEW_TETROMINO: {
-            int randomNum = rand() % (FIELD_WIDTH - SKEW_TETROMINO_WIDTH - 1);
+            int randomNum = rand() % (FIELD_WIDTH - SKEW_TETROMINO_WIDTH + 1);
             int startPos = getPosition(1, randomNum, FIELD_WIDTH);
             int firstRow = getPosition(0, randomNum + 1, FIELD_WIDTH);
             field[startPos] = NEW_SHAPE_PART;
@@ -108,7 +108,8 @@ void moveRight(int *field) {
 
 bool checkCollisions(int *field) {
     bool allSolid = false;
-    bool RowAlreadyCheckedAgain = false;
+    bool checkAllAgain = true;
+    int numOfSolid = 0;
 
     for (int i = FIELD_HEIGHT - 1; i >= 0; --i) {
         for (int j = 0; j < FIELD_WIDTH; ++j) {
@@ -118,8 +119,12 @@ bool checkCollisions(int *field) {
             if (i == FIELD_HEIGHT - 1 || allSolid || field[getPosition(i + 1, j, FIELD_WIDTH)] == SOLID) {
                 allSolid = true;
                 field[currPosition] = SOLID;
-                if (RowAlreadyCheckedAgain == false) {
-                    RowAlreadyCheckedAgain = true;
+                if (++numOfSolid == 4) {
+                    return true;
+                }
+
+                if (checkAllAgain) {
+                    checkAllAgain = false;
                     j = -1;
                     i = FIELD_HEIGHT;
                 }
@@ -127,7 +132,7 @@ bool checkCollisions(int *field) {
         }
     }
 
-    return allSolid;
+    return false;
 }
 
 bool moveDown(int *field, bool *solid) {

@@ -55,3 +55,11 @@ const SDL_Color SOLID_BLOCK_COLOR = {
         200,
         255
 };
+
+const SDL_Color TETROMINO_COLORS[] = {
+        {202, 5, 5, 255},
+        {130, 202, 5, 255},
+        {5, 202, 193, 255},
+        {118, 5, 202, 255},
+        {202, 5, 85, 255}
+};
