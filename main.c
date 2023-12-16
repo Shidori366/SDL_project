@@ -8,6 +8,24 @@
 #include "tetris_constants.h"
 #include "field_functions.h"
 #include "sdl_functions.h"
+#include "tetris_types.h"
+
+Uint32 callback(Uint32 interval, void *param) {
+    SDL_Event event;
+    SDL_UserEvent userEvent;
+
+    userEvent.type = SDL_USEREVENT;
+    userEvent.code = 0;
+    userEvent.data1 = NULL;
+    userEvent.data2 = NULL;
+
+    event.type = SDL_USEREVENT;
+    event.user = userEvent;
+
+    SDL_PushEvent(&event);
+
+    return interval;
+}
 
 int main(int argc, char *argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -24,18 +42,19 @@ int main(int argc, char *argv[]) {
 
     int *field = malloc(TOTAL_NUM_OF_CELLS * sizeof(int));
     initializeField(field);
-    addNewShapeToField(field, SKEW_TETROMINO);
+
+    SDL_TimerID fallTimer = SDL_AddTimer(1200, callback, NULL);
 
     SDL_Event event;
     int running = 1;
     int currentNewShapeColorIndex;
     SDL_Rect block = {0, 0, BLOCK_WIDTH, BLOCK_HEIGHT};
-    bool solid = false;
+    bool solid = true;
 
     while (running) {
         drawGridBackground(renderer);
         if (solid) {
-            addNewShapeToField(field, rand() % (SHAPE_COUNT));
+            addNewShapeToField(field, rand() % SHAPE_COUNT);
             currentNewShapeColorIndex = rand() % SHAPE_COUNT;
             solid = false;
         }
@@ -65,6 +84,12 @@ int main(int argc, char *argv[]) {
                         dropNewShape(field, &solid);
                     }
                 }
+                case SDL_USEREVENT: {
+                    if (event.user.code == 0) {
+                        moveNewShape(field, DOWN, &solid);
+                    }
+                    break;
+                }
             }
         }
 
@@ -81,7 +106,8 @@ int main(int argc, char *argv[]) {
 
                         continue;
                     }
-                    case NEW_SHAPE_PART: {
+                    case NEW_SHAPE_PART: {}
+                    case NEW_SHAPE_PIVOT: {
                         renderBlock(renderer, block, TETROMINO_COLORS[currentNewShapeColorIndex]);
 
                         continue;
@@ -96,6 +122,8 @@ int main(int argc, char *argv[]) {
         SDL_Delay(1000 / 60);
         clearScreen(renderer);
     }
+
+    SDL_RemoveTimer(fallTimer);
 
     return 0;
 }

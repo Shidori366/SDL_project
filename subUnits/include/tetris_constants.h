@@ -6,7 +6,10 @@
 #ifndef TETRIS_CONSTANTS
 #define TETRIS_CONSTANTS
 
+#define SHAPE_COUNT 7
+
 #include <SDL_pixels.h>
+#include "tetris_types.h"
 
 extern const int SIDEBAR_WIDTH;
 
@@ -29,33 +32,6 @@ extern const SDL_Color CLEAR_COLOR;
 extern const SDL_Color SOLID_BLOCK_COLOR;
 extern const SDL_Color TETROMINO_COLORS[];
 
-extern const int STRAIGHT_TETROMINO_WIDTH;
-extern const int SQUARE_TETROMINO_WIDTH;
-extern const int T_TETROMINO_WIDTH;
-extern const int L_TETROMINO_WIDTH;
-extern const int SKEW_TETROMINO_WIDTH;
-
-extern const int SHAPE_COUNT;
-
-enum TetrisFieldCellStates {
-    EMPTY = 0,
-    SOLID = 1,
-    NEW_SHAPE_PART = 2,
-};
-
-// TODO: Change shapes according to task assignment
-enum TetrisShapes {
-    STRAIGHT_TETROMINO,
-    SQUARE_TETROMINO,
-    T_TETROMINO,
-    L_TETROMINO,
-    SKEW_TETROMINO
-};
-
-enum Directions {
-    RIGHT,
-    DOWN,
-    LEFT
-};
+extern const int shapeWidthArr[SHAPE_COUNT];
 
 #endif
