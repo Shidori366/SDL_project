@@ -6,7 +6,7 @@
 #ifndef SDL_FUNCTIONS
 #define SDL_FUNCTIONS
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "tetris_constants.h"
 
 void drawGridBackground(SDL_Renderer *renderer);

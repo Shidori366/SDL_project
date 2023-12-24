@@ -8,7 +8,7 @@
 
 #define SHAPE_COUNT 7
 
-#include <SDL_pixels.h>
+#include <SDL2/SDL_pixels.h>
 #include "tetris_types.h"
 
 extern const int SIDEBAR_WIDTH;

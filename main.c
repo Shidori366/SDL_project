@@ -8,7 +8,6 @@
 #include "tetris_constants.h"
 #include "field_functions.h"
 #include "sdl_functions.h"
-#include "tetris_types.h"
 
 Uint32 callback(Uint32 interval, void *param) {
     SDL_Event event;
@@ -27,7 +26,7 @@ Uint32 callback(Uint32 interval, void *param) {
     return interval;
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     SDL_Init(SDL_INIT_EVERYTHING);
     srand(time(NULL));
 
