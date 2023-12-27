@@ -7,12 +7,21 @@
 #define SDL_FUNCTIONS
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include "tetris_constants.h"
 
 void drawGridBackground(SDL_Renderer *renderer);
+
 void drawGridLines(SDL_Renderer *renderer);
+
 void kill(SDL_Window *window, SDL_Renderer *renderer);
+
 void clearScreen(SDL_Renderer *renderer);
+
 void renderBlock(SDL_Renderer *renderer, SDL_Rect block, SDL_Color color);
+
+SDL_Texture *createTextureFromString(SDL_Renderer *renderer, char *str, TTF_Font *font, SDL_Color color);
+
+SDL_Texture *createTextureFromNumber(SDL_Renderer *renderer, long number, TTF_Font *font, SDL_Color color);
 
 #endif

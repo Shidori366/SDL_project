@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.22)
 project(SDL_project C)
 
 set(CMAKE_C_STANDARD 11)
@@ -16,3 +16,5 @@ find_package(SDL2 CONFIG REQUIRED)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
+target_link_libraries(${PROJECT_NAME} SDL2_ttf)
+target_link_libraries(${PROJECT_NAME} m)

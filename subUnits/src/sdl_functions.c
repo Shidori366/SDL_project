@@ -54,3 +54,15 @@ void renderBlock(SDL_Renderer *renderer, SDL_Rect block, SDL_Color color) {
                            color.a);
     SDL_RenderFillRect(renderer, &block);
 }
+
+SDL_Texture *createTextureFromString(SDL_Renderer *renderer, char *str, TTF_Font *font, SDL_Color color) {
+    SDL_Surface *surface = TTF_RenderText_Solid(font, str, color);
+    return SDL_CreateTextureFromSurface(renderer, surface);
+}
+
+SDL_Texture *createTextureFromNumber(SDL_Renderer *renderer, long number, TTF_Font *font, SDL_Color color) {
+    char numStrBuffer[30];
+    snprintf(numStrBuffer, 30, "%ld", number);
+    SDL_Surface *surface = TTF_RenderText_Solid(font, numStrBuffer, color);
+    return SDL_CreateTextureFromSurface(renderer, surface);
+}

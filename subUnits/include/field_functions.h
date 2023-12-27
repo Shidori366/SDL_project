@@ -12,10 +12,17 @@
 #include "tetris_types.h"
 
 void initializeField(int *field);
-int getPosition(int row, int column, int width);
+
+int get1dIndex(int row, int column, int width);
+
 void addNewShapeToField(int *field, enum TetrisShapes shape);
-void moveNewShape(int *field, enum Directions direction, bool *solid);
-void dropNewShape(int *field, bool *solid);
+
+void moveNewShape(int *field, enum Directions direction, bool *solid, unsigned int *score);
+
+void dropNewShape(int *field, bool *solid, unsigned int *score);
+
 void rotateShape(int *field);
+
+bool isGameOver(const int *field);
 
 #endif

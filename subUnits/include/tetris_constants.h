@@ -26,6 +26,11 @@ extern const int GRID_WIDTH_PX;
 extern const int BLOCK_WIDTH;
 extern const int BLOCK_HEIGHT;
 
+extern const int SCORE_TEXT_FONT_PT_SIZE;
+extern const int SCORE_VALUE_FONT_PT_SIZE;
+extern const SDL_Color SCORE_FONT_COLOR;
+extern const char *ROBOTO_REGULAR_FONT_PATH;
+
 extern const SDL_Color GRID_BACKGROUND_COLOR;
 extern const SDL_Color GRID_LINES_COLOR;
 extern const SDL_Color CLEAR_COLOR;
