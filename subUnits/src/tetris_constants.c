@@ -3,7 +3,7 @@
  * @Date 10.12.2023
  */
 
-#include "tetris_constants.h"
+#include <tetris_constants.h>
 
 const int STARTING_POSITION_HEIGHT = 4;
 const int FIELD_WIDTH = 10;
@@ -30,6 +30,10 @@ const SDL_Color SCORE_FONT_COLOR = {
 };
 
 const char *ROBOTO_REGULAR_FONT_PATH = "../resources/fonts/Roboto-Regular.ttf";
+
+const char *SCORES_FILE_PATH = "../resources/scores.txt";
+
+const int MAX_PLAYER_NAME_LENGTH = 10;
 
 const SDL_Color GRID_BACKGROUND_COLOR = {
         25,

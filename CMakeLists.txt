@@ -9,7 +9,10 @@ set(SOURCE_FILES
         main.c
         subUnits/src/field_functions.c
         subUnits/src/sdl_functions.c
-        subUnits/src/tetris_constants.c)
+        subUnits/src/tetris_constants.c
+        subUnits/src/shape_rotation_functions.c
+        subUnits/src/timer_callbacks.c
+        subUnits/src/score_functions.c)
 
 find_package(SDL2 CONFIG REQUIRED)
 

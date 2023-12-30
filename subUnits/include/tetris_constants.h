@@ -9,7 +9,7 @@
 #define SHAPE_COUNT 7
 
 #include <SDL2/SDL_pixels.h>
-#include "tetris_types.h"
+#include <tetris_types.h>
 
 extern const int SIDEBAR_WIDTH;
 
@@ -30,6 +30,10 @@ extern const int SCORE_TEXT_FONT_PT_SIZE;
 extern const int SCORE_VALUE_FONT_PT_SIZE;
 extern const SDL_Color SCORE_FONT_COLOR;
 extern const char *ROBOTO_REGULAR_FONT_PATH;
+
+extern const char *SCORES_FILE_PATH;
+
+extern const int MAX_PLAYER_NAME_LENGTH;
 
 extern const SDL_Color GRID_BACKGROUND_COLOR;
 extern const SDL_Color GRID_LINES_COLOR;

@@ -3,7 +3,7 @@
  * @Date 10.12.2023
  */
 
-#include "field_functions.h"
+#include <field_functions.h>
 
 void initializeField(int *field) {
     for (int i = 0; i < TOTAL_NUM_OF_CELLS; ++i) {

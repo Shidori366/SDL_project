@@ -8,8 +8,8 @@
 
 #include <stdbool.h>
 #include <time.h>
-#include "tetris_constants.h"
-#include "tetris_types.h"
+#include <tetris_constants.h>
+#include <tetris_types.h>
 
 void initializeField(int *field);
 
