@@ -7,11 +7,6 @@
 
 unsigned int score = 0;
 
-typedef struct ScoreInfo{
-    char playerName[MAX_PLAYER_NAME_LENGTH];
-    int score;
-} ScoreInfo;
-
 bool scoreChanged() {
     static unsigned int lastScore = 0;
 
@@ -25,18 +20,36 @@ bool scoreChanged() {
 
 ScoreInfo parseScore(char *str) {
     ScoreInfo scoreInfo;
-    strcpy(scoreInfo.playerName ,strtok(str, "|"));
+    strcpy(scoreInfo.playerName, strtok(str, "|"));
     scoreInfo.score = atoi(strtok(NULL, "\n"));
     return scoreInfo;
+}
+
+ScoreInfo *getAllScores(unsigned int *numberOfScores) {
+    FILE *f = fopen(SCORES_FILE_PATH, "r");
+    ScoreInfo *scores = malloc(10 * sizeof(ScoreInfo));
+    char line[MAX_SCORE_LINE_LENGTH] = {0};
+    *numberOfScores = 0;
+
+    for (int i = 0; i < 10; ++i) {
+        if (fgets(line, MAX_SCORE_LINE_LENGTH, f) == NULL) {
+            break;
+        }
+        scores[i] = parseScore(line);
+        (*numberOfScores)++;
+    }
+
+    fclose(f);
+    return scores;
 }
 
 void sortScoreArray(ScoreInfo *scoreArray, unsigned int size) {
     for (unsigned int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - i - 1; ++j) {
-            if (scoreArray[j].score < scoreArray[j+1].score) {
+            if (scoreArray[j].score < scoreArray[j + 1].score) {
                 ScoreInfo temp = scoreArray[j];
-                scoreArray[j] = scoreArray[j+1];
-                scoreArray[j+1] = temp;
+                scoreArray[j] = scoreArray[j + 1];
+                scoreArray[j + 1] = temp;
             }
         }
     }

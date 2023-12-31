@@ -13,7 +13,14 @@
 
 extern unsigned int score;
 
+typedef struct ScoreInfo{
+    char playerName[MAX_PLAYER_NAME_LENGTH];
+    int score;
+} ScoreInfo;
+
 bool scoreChanged();
+
+ScoreInfo *getAllScores(unsigned int *numberOfScores);
 
 void saveScore(char *playerName);
 

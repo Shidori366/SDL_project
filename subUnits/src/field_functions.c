@@ -230,9 +230,8 @@ void addToScore(unsigned int *score, int rowsRemoved) {
 
 bool moveDown(int *field, bool *solid, unsigned int *score) {
     if (checkGroundCollisions(field)) {
-        int rowsRemoved = 0;
         *solid = true;
-        rowsRemoved = checkAndRemoveFilledRows(field);
+        int rowsRemoved = checkAndRemoveFilledRows(field);
         addToScore(score, rowsRemoved);
         return false;
     }

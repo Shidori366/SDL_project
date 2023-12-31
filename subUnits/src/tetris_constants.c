@@ -25,14 +25,16 @@ const int SCORE_VALUE_FONT_PT_SIZE = 30;
 const int GAME_OVER_FONT_PT_SIZE = 42;
 const int GAME_OVER_SCORE_FONT_PT_SIZE = 22;
 const int PLAYER_NAME_INPUT_PT_SIZE = 72;
+const int LEADERBOARD_FONT_PT_SIZE = 25;
 
 const char *ROBOTO_REGULAR_FONT_PATH = "../resources/fonts/Roboto-Regular.ttf";
-
 const char *SCORES_FILE_PATH = "../resources/scores.txt";
-
-const char *PLAY_BUTTON_PATH = "../resources/images/play_button.png";
-const char *TEXT_BOX_PATH = "../resources/images/text_box.png";
-
+const char *PLAY_BUTTON_PATH = "../resources/images/menu/play_button.png";
+const char *BACK_BUTTON_PATH = "../resources/images/menu/back_button.png";
+const char *LEADERBOARD_BUTTON_PATH = "../resources/images/menu/leaderboard_button.png";
+const char *LEADERBOARD_TABLE_PATH = "../resources/images/menu/leaderboard_table.png";
+const char *TEXT_BOX_PATH = "../resources/images/menu/text_box.png";
+const char *SHAPES_PATH_TEMPLATE = "../resources/images/shapes/0.png";
 
 const SDL_Color SCORE_FONT_COLOR = {
         255,
@@ -47,9 +49,26 @@ const SDL_Color GAME_OVER_FONT_COLOR = {
         0
 };
 
-const SDL_Color GAME_OVER_SCORE_FONT_COLOR = SCORE_FONT_COLOR;
+const SDL_Color GAME_OVER_SCORE_FONT_COLOR = {
+        255,
+        255,
+        255,
+        0
+};
 
-const SDL_Color PLAYER_NAME_INPUT_COLOR = SCORE_FONT_COLOR;
+const SDL_Color PLAYER_NAME_INPUT_COLOR = {
+        255,
+        255,
+        255,
+        0
+};
+
+const SDL_Color LEADERBOARD_RECORD_COLOR = {
+        255,
+        255,
+        255,
+        0
+};
 
 const SDL_Color GRID_BACKGROUND_COLOR = {
         25,

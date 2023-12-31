@@ -33,7 +33,7 @@ enum Directions {
 enum Scenes {
     MENU,
     GAME,
-    GAME_OVER
+    GAME_OVER,
 };
 
 typedef struct Position {
