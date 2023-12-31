@@ -1,6 +1,7 @@
-//
-// Created by shidori on 12/30/23.
-//
+/**
+ * @author Dominik Milián
+ * @Date 30.12.2023
+ */
 
 #include <shape_rotation_functions.h>
 

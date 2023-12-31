@@ -1,16 +1,20 @@
-//
-// Created by shidori on 12/30/23.
-//
+/**
+ * @author Dominik Milián
+ * @Date 30.12.2023
+ */
 
 #ifndef SDL_PROJECT_SCORE_FUNCTIONS_H
 #define SDL_PROJECT_SCORE_FUNCTIONS_H
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <tetris_constants.h>
 
-bool scoreChanged(unsigned int score);
+extern unsigned int score;
 
-void addScore(char *playerName, unsigned int score);
+bool scoreChanged();
+
+void saveScore(char *playerName);
 
 #endif //SDL_PROJECT_SCORE_FUNCTIONS_H

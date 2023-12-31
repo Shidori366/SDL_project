@@ -30,6 +30,12 @@ enum Directions {
     LEFT
 };
 
+enum Scenes {
+    MENU,
+    GAME,
+    GAME_OVER
+};
+
 typedef struct Position {
     int x;
     int y;

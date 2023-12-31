@@ -16,14 +16,11 @@ void drawGridBackground(SDL_Renderer *renderer);
 
 void drawGridLines(SDL_Renderer *renderer);
 
-void kill(SDL_Window *window, SDL_Renderer *renderer);
-
 void clearScreen(SDL_Renderer *renderer);
 
 void renderBlock(SDL_Renderer *renderer, SDL_Rect block, SDL_Color color);
 
-void handleEvents(SDL_Event *event, int *field, SDL_Renderer *renderer, SDL_Window *window, bool *running, bool *solid,
-                  unsigned int *score);
+void handleEvents(SDL_Event *event, int *field, bool *running, bool *solid, unsigned int *score, bool *quit);
 
 void handleBlockRendering(SDL_Renderer *renderer, const int *field, SDL_Rect block, int currentNewShapeColorIndex);
 

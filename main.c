@@ -3,18 +3,15 @@
  * @Date 10.12.2023
  */
 
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <tetris_constants.h>
-#include <field_functions.h>
-#include <sdl_functions.h>
-#include <shape_rotation_functions.h>
-#include <timer_callbacks.h>
-#include <score_functions.h>
+#include <scenes.h>
 
 int main() {
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
+    IMG_Init(IMG_INIT_PNG);
+
     srand(time(NULL));
 
     SDL_Window *window = NULL;
@@ -26,75 +23,27 @@ int main() {
     }
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-    TTF_Font *scoreFont = TTF_OpenFont(ROBOTO_REGULAR_FONT_PATH, SCORE_TEXT_FONT_PT_SIZE);
-    TTF_Font *scoreValueFont = TTF_OpenFont(ROBOTO_REGULAR_FONT_PATH, SCORE_VALUE_FONT_PT_SIZE);
+    bool quit = false;
+    enum Scenes scene = MENU;
+    char playerName[MAX_PLAYER_NAME_LENGTH+1] = {0};
 
-    SDL_Texture *scoreStringTexture = createTextureFromString(renderer, "Score: ", scoreFont, SCORE_FONT_COLOR);
-    SDL_Rect scoreStringRect;
-    SDL_QueryTexture(scoreStringTexture, NULL, NULL, &scoreStringRect.w, &scoreStringRect.h);
-    scoreStringRect.x = GRID_WIDTH_PX + 10;
-    scoreStringRect.y = 20;
-
-    SDL_Texture *scoreValueTexture = createTextureFromNumber(renderer, 0, scoreValueFont, SCORE_FONT_COLOR);
-    SDL_Rect scoreValueRect;
-    SDL_QueryTexture(scoreValueTexture, NULL, NULL, &scoreValueRect.w, &scoreValueRect.h);
-    scoreValueRect.x = GRID_WIDTH_PX + 10;
-    scoreValueRect.y = 20 + scoreStringRect.h;
-
-    int *field = malloc(TOTAL_NUM_OF_CELLS * sizeof(int));
-    initializeField(field);
-
-    SDL_TimerID fallTimer = SDL_AddTimer(600, fallTimerCallback, NULL);
-
-    int shapeRotation[SHAPE_COUNT];
-    fillShapeRotation(shapeRotation);
-    randomizeShapeRotation(shapeRotation);
-    int nextShapeIndex = 0;
-
-    SDL_Event event;
-    bool running = true;
-    int currentNewShapeColorIndex;
-    unsigned int score = 0;
-    SDL_Rect block = {0, 0, BLOCK_WIDTH, BLOCK_HEIGHT};
-    bool solid = true;
-
-    while (running) {
-        drawGridBackground(renderer);
-        if (solid) {
-            addNewShapeToField(field, shapeRotation[nextShapeIndex++]);
-            currentNewShapeColorIndex = rand() % SHAPE_COUNT;
-            solid = false;
-
-            if (nextShapeIndex == SHAPE_COUNT) {
-                randomizeShapeRotation(shapeRotation);
-                nextShapeIndex = 0;
+    while(!quit) {
+        switch (scene) {
+            case MENU: {
+                menu(renderer, &scene, &quit, playerName);
+                break;
+            }
+            case GAME: {
+                game(renderer, &scene, &quit, playerName);
+                break;
+            }
+            case GAME_OVER: {
+                gameOver(renderer, &quit);
+                break;
             }
         }
-
-        handleEvents(&event, field, renderer, window, &running, &solid, &score);
-        handleBlockRendering(renderer, field, block, currentNewShapeColorIndex);
-
-        drawGridLines(renderer);
-
-        if (scoreChanged(score)) {
-            scoreValueTexture = createTextureFromNumber(renderer, score, scoreValueFont, SCORE_FONT_COLOR);
-            SDL_QueryTexture(scoreValueTexture, NULL, NULL, &scoreValueRect.w, NULL);
-        }
-
-        SDL_RenderCopy(renderer, scoreValueTexture, NULL, &scoreValueRect);
-        SDL_RenderCopy(renderer, scoreStringTexture, NULL, &scoreStringRect);
-        SDL_RenderPresent(renderer);
-        // TODO: implement game over screen
-        if (isGameOver(field)) {
-            addScore("test2", score);
-
-            running = 0;
-        }
-        clearScreen(renderer);
     }
 
-    SDL_RemoveTimer(fallTimer);
-    TTF_CloseFont(scoreFont);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

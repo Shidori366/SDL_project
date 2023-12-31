@@ -1,6 +1,7 @@
-//
-// Created by shidori on 12/30/23.
-//
+/**
+ * @author Dominik Milián
+ * @Date 30.12.2023
+ */
 
 #ifndef SDL_PROJECT_SHAPE_ROTATION_FUNCTIONS_H
 #define SDL_PROJECT_SHAPE_ROTATION_FUNCTIONS_H

@@ -7,6 +7,8 @@
 #define TETRIS_CONSTANTS
 
 #define SHAPE_COUNT 7
+#define MAX_PLAYER_NAME_LENGTH 10
+#define MAX_SCORE_LINE_LENGTH (MAX_PLAYER_NAME_LENGTH + 21)
 
 #include <SDL2/SDL_pixels.h>
 #include <tetris_types.h>
@@ -28,13 +30,21 @@ extern const int BLOCK_HEIGHT;
 
 extern const int SCORE_TEXT_FONT_PT_SIZE;
 extern const int SCORE_VALUE_FONT_PT_SIZE;
-extern const SDL_Color SCORE_FONT_COLOR;
+extern const int GAME_OVER_FONT_PT_SIZE;
+extern const int GAME_OVER_SCORE_FONT_PT_SIZE;
+extern const int PLAYER_NAME_INPUT_PT_SIZE;
+
 extern const char *ROBOTO_REGULAR_FONT_PATH;
 
 extern const char *SCORES_FILE_PATH;
 
-extern const int MAX_PLAYER_NAME_LENGTH;
+extern const char *PLAY_BUTTON_PATH;
+extern const char *TEXT_BOX_PATH;
 
+extern const SDL_Color SCORE_FONT_COLOR;
+extern const SDL_Color GAME_OVER_FONT_COLOR;
+extern const SDL_Color GAME_OVER_SCORE_FONT_COLOR;
+extern const SDL_Color PLAYER_NAME_INPUT_COLOR;
 extern const SDL_Color GRID_BACKGROUND_COLOR;
 extern const SDL_Color GRID_LINES_COLOR;
 extern const SDL_Color CLEAR_COLOR;

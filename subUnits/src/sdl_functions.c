@@ -31,12 +31,6 @@ void drawGridLines(SDL_Renderer *renderer) {
     }
 }
 
-void kill(SDL_Window *window, SDL_Renderer *renderer) {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-}
-
 void clearScreen(SDL_Renderer *renderer) {
     SDL_SetRenderDrawColor(renderer,
                            CLEAR_COLOR.r,
@@ -55,12 +49,11 @@ void renderBlock(SDL_Renderer *renderer, SDL_Rect block, SDL_Color color) {
     SDL_RenderFillRect(renderer, &block);
 }
 
-void handleEvents(SDL_Event *event, int *field, SDL_Renderer *renderer, SDL_Window *window, bool *running, bool *solid,
-                  unsigned int *score) {
+void handleEvents(SDL_Event *event, int *field, bool *running, bool *solid, unsigned int *score, bool *quit) {
     while (SDL_PollEvent(event)) {
         switch (event->type) {
             case SDL_QUIT: {
-                kill(window, renderer);
+                *quit = true;
                 *running = false;
 
                 break;
@@ -106,7 +99,8 @@ void handleBlockRendering(SDL_Renderer *renderer, const int *field, SDL_Rect blo
 
                     continue;
                 }
-                case NEW_SHAPE_PART: {}
+                case NEW_SHAPE_PART: {
+                }
                 case NEW_SHAPE_PIVOT: {
                     renderBlock(renderer, block, TETROMINO_COLORS[currentNewShapeColorIndex]);
 

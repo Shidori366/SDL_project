@@ -10,7 +10,7 @@ const int FIELD_WIDTH = 10;
 const int FIELD_HEIGHT = 20 + STARTING_POSITION_HEIGHT;
 const int TOTAL_NUM_OF_CELLS = FIELD_WIDTH * FIELD_HEIGHT + FIELD_WIDTH * STARTING_POSITION_HEIGHT;
 
-const int SIDEBAR_WIDTH = 200;
+const int SIDEBAR_WIDTH = 300;
 
 const int WINDOW_WIDTH = 300 + SIDEBAR_WIDTH;
 const int WINDOW_HEIGHT = 720;
@@ -20,20 +20,36 @@ const int GRID_WIDTH_PX = WINDOW_WIDTH - SIDEBAR_WIDTH;
 const int BLOCK_WIDTH = GRID_WIDTH_PX / FIELD_WIDTH;
 const int BLOCK_HEIGHT = WINDOW_HEIGHT / FIELD_HEIGHT;
 
-const int SCORE_TEXT_FONT_PT_SIZE = 25;
-const int SCORE_VALUE_FONT_PT_SIZE = 15;
+const int SCORE_TEXT_FONT_PT_SIZE = 35;
+const int SCORE_VALUE_FONT_PT_SIZE = 30;
+const int GAME_OVER_FONT_PT_SIZE = 42;
+const int GAME_OVER_SCORE_FONT_PT_SIZE = 22;
+const int PLAYER_NAME_INPUT_PT_SIZE = 72;
+
+const char *ROBOTO_REGULAR_FONT_PATH = "../resources/fonts/Roboto-Regular.ttf";
+
+const char *SCORES_FILE_PATH = "../resources/scores.txt";
+
+const char *PLAY_BUTTON_PATH = "../resources/images/play_button.png";
+const char *TEXT_BOX_PATH = "../resources/images/text_box.png";
+
+
 const SDL_Color SCORE_FONT_COLOR = {
         255,
         255,
         255,
         0
 };
+const SDL_Color GAME_OVER_FONT_COLOR = {
+        255,
+        0,
+        0,
+        0
+};
 
-const char *ROBOTO_REGULAR_FONT_PATH = "../resources/fonts/Roboto-Regular.ttf";
+const SDL_Color GAME_OVER_SCORE_FONT_COLOR = SCORE_FONT_COLOR;
 
-const char *SCORES_FILE_PATH = "../resources/scores.txt";
-
-const int MAX_PLAYER_NAME_LENGTH = 10;
+const SDL_Color PLAYER_NAME_INPUT_COLOR = SCORE_FONT_COLOR;
 
 const SDL_Color GRID_BACKGROUND_COLOR = {
         25,
