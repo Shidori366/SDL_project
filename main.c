@@ -1,6 +1,7 @@
 /**
  * @author Dominik Milián
  * @Date 10.12.2023
+ * @brief File containing starting point of this project.
  */
 
 #include <SDL2/SDL.h>

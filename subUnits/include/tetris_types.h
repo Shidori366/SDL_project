@@ -1,6 +1,7 @@
 /**
  * @author Dominik Milián
  * @Date 10.12.2023
+ * @brief File containing types used in this project.
  */
 
 #ifndef TETRIS_TYPES
