@@ -74,6 +74,7 @@ void handleEvents(SDL_Event *event, int *field, bool *running, bool *solid, unsi
                 if (event->key.keysym.sym == SDLK_SPACE) {
                     dropNewShape(field, solid, score);
                 }
+                break;
             }
             case SDL_USEREVENT: {
                 if (event->user.code == 0) {

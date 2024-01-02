@@ -7,10 +7,15 @@
 #ifndef FIELD_FUNCTIONS
 #define FIELD_FUNCTIONS
 
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
+
 #include <stdbool.h>
 #include <time.h>
 #include <tetris_constants.h>
 #include <tetris_types.h>
+#include <math.h>
 
 /**
  * Initialize field with EMPTY state.

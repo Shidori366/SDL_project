@@ -7,8 +7,8 @@
 #ifndef SDL_PROJECT_TIMER_CALLBACKS_H
 #define SDL_PROJECT_TIMER_CALLBACKS_H
 
-#include <SDL_events.h>
-#include <SDL_types.h>
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_types.h>
 
 /**
  * Callback for timer, which controls,

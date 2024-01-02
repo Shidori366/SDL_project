@@ -45,7 +45,7 @@ ScoreInfo *getAllScores(unsigned int *numberOfScores) {
 
 void sortScoreArray(ScoreInfo *scoreArray, unsigned int size) {
     for (unsigned int i = 0; i < size - 1; ++i) {
-        for (int j = 0; j < size - i - 1; ++j) {
+        for (unsigned int j = 0; j < size - i - 1; ++j) {
             if (scoreArray[j].score < scoreArray[j + 1].score) {
                 ScoreInfo temp = scoreArray[j];
                 scoreArray[j] = scoreArray[j + 1];
@@ -75,9 +75,9 @@ void cleanScoreFile() {
 
     sortScoreArray(scoreArr, recordCount);
 
-    fopen(SCORES_FILE_PATH, "w");
+    f = fopen(SCORES_FILE_PATH, "w");
 
-    for (int i = 0; i < recordCount; ++i) {
+    for (unsigned int i = 0; i < recordCount; ++i) {
         if (i == 10) {
             break;
         }

@@ -9,7 +9,7 @@ void leaderboard(SDL_Renderer *renderer, bool *quit, bool *menuRunning) {
     unsigned int numberOfScores;
     ScoreInfo *allScores = getAllScores(&numberOfScores);
     char **allScoresStr = malloc(numberOfScores * sizeof(char *));
-    for (int i = 0; i < numberOfScores; ++i) {
+    for (unsigned int i = 0; i < numberOfScores; ++i) {
         allScoresStr[i] = malloc((MAX_SCORE_LINE_LENGTH + 2) * sizeof(char));
         snprintf(allScoresStr[i], MAX_SCORE_LINE_LENGTH + 2, "%s: %d", allScores[i].playerName, allScores[i].score);
     }
@@ -24,11 +24,11 @@ void leaderboard(SDL_Renderer *renderer, bool *quit, bool *menuRunning) {
 
     SDL_Texture **textures = malloc(numberOfScores * sizeof(SDL_Texture *));
     SDL_Rect rects[10];
-    for (int i = 0; i < numberOfScores; ++i) {
+    for (unsigned int i = 0; i < numberOfScores; ++i) {
         textures[i] = createTextureFromString(renderer, allScoresStr[i], leaderBoardFont, LEADERBOARD_RECORD_COLOR);
         SDL_QueryTexture(textures[i], NULL, NULL, &rects[i].w, &rects[i].h);
         rects[i].x = leaderboardTableRect.x + 20;
-        rects[i].y = leaderboardTableRect.y + 80 + (i * 35);
+        rects[i].y = (int)(leaderboardTableRect.y + 80 + (i * 35));
     }
 
     SDL_Texture *backButton = IMG_LoadTexture(renderer, BACK_BUTTON_PATH);
@@ -49,6 +49,7 @@ void leaderboard(SDL_Renderer *renderer, bool *quit, bool *menuRunning) {
                     *quit = true;
                     running = false;
                     *menuRunning = false;
+                    break;
                 }
                 case SDL_MOUSEBUTTONDOWN: {
                     if (event.button.button == SDL_BUTTON_LEFT) {
@@ -65,14 +66,14 @@ void leaderboard(SDL_Renderer *renderer, bool *quit, bool *menuRunning) {
 
         SDL_RenderCopy(renderer, leaderboardTableTexture, NULL, &leaderboardTableRect);
         SDL_RenderCopy(renderer, backButton, NULL, &backButtonRect);
-        for (int i = 0; i < numberOfScores; ++i) {
+        for (unsigned int i = 0; i < numberOfScores; ++i) {
             SDL_RenderCopy(renderer, textures[i], NULL, &rects[i]);
         }
         SDL_RenderPresent(renderer);
         clearScreen(renderer);
     }
 
-    for (int i = 0; i < numberOfScores; ++i) {
+    for (unsigned int i = 0; i < numberOfScores; ++i) {
         SDL_DestroyTexture(textures[i]);
         free(allScoresStr[i]);
     }
