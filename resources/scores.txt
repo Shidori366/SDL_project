@@ -1,3 +1,4 @@
+Mabachi|100000
 BAZINGA|13000
 shidori|5200
 jmeno|4400
@@ -7,4 +8,3 @@ sadasS|0
 vcxv|0
 dDsf|0
 sada |0
-sadasd|0
